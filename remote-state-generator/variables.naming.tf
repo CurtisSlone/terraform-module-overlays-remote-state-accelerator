@@ -26,3 +26,9 @@ variable "custom_name" {
   type        = string
   default     = ""
 }
+
+variable "custom_resource_group_name" {
+    description = "(Optional) Custom name for the resource group. If not set, the module will generate a name based on the workload_name, environment and org_name."
+    type = string
+    default = null
+}

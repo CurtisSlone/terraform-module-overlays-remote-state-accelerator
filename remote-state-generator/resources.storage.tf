@@ -7,7 +7,7 @@ resource "azurerm_storage_account" "tfstatesa" {
     module.mod_network_artifacts_rg
   ]
   name                     = "${lower(var.org_name)}tfstatesa${random_string.tf-name.result}"
-  resource_group_name      = module.mod_network_artifacts_rg.resource_group_name
+  resource_group_name      = module.mod_rg.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "GRS"

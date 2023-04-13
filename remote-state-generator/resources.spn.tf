@@ -3,12 +3,18 @@
 
 # App Registration
 resource "azuread_application" "app" {
+  depends_on = [
+    module.mod_rg
+  ]
   display_name     = var.service_principal_name
   sign_in_audience = "AzureADMyOrg"
 }
 
 # SPN Assignment To App Registration
 resource "azuread_service_principal" "sp" {
+  depends_on = [
+    azuread_application.app
+  ]
   application_id    = azuread_application.app.application_id
   alternative_names = var.alternative_names
   description       = var.service_principal_description
@@ -16,6 +22,9 @@ resource "azuread_service_principal" "sp" {
 
 # SPN Roles
 resource "azurerm_role_assignment" "role" {
+  depends_on = [
+    azuread_service_principal.sp
+  ]
   name                 = "SubscriptionContributor"
   description          = "Current Subscription Contributor Role"
   scope = "subscriptions/${data.azurerm_client_config.current.subscription_id}"
