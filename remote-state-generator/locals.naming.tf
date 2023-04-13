@@ -8,6 +8,6 @@ locals {
   #element(coalescelist(data.azurerm_resource_group.rgrp.*.name, module.mod_key_vault_rg.*.resource_group_name, [""]), 0)
   location            = ""
   #element(coalescelist(data.azurerm_resource_group.rgrp.*.location, module.mod_key_vault_rg.*.resource_group_location, [""]), 0)
-  kv_name                = coalesce(var.custom_name, data.azurenoopsutils_resource_name.keyvault.result)
-  sa_name = "" #coalesce()
+  kv_name                = "${var.workload}${var.environment}kv${random_string.rand.result}"
+  sa_name = "${var.workload}${var.environment}sc${random_string.rand.result}"
 }

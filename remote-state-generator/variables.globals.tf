@@ -8,7 +8,6 @@
 variable "environment" {
   description = "The Terraform backend environment e.g. public or usgovernment"
   type        = string
-  default     = null
 }
 
 variable "location" {
@@ -25,13 +24,11 @@ variable "org_name" {
 variable "workload_name" {
   description = "A name for the workload. It defaults to network-artifacts."
   type        = string
-  default     = "network-artifacts"
 }
 
 variable "deploy_environment" {
   description = "The environment to deploy. It defaults to dev."
   type        = string
-  default     = "dev"
 }
 
 variable "use_location_short_name" {
