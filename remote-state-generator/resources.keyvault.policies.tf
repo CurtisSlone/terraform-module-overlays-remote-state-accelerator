@@ -3,8 +3,10 @@
 
 # Readers Policy
 resource "azurerm_key_vault_access_policy" "readers_policy" {
-  
-  object_id = ""
+  depends_on = [
+    azurerm_key_vault.keyvault
+  ]
+  object_id = azuread_service_principal.sp.object_id
   tenant_id = local.tenant_id
   key_vault_id = azurerm_key_vault.keyvault.id
 
@@ -26,7 +28,9 @@ resource "azurerm_key_vault_access_policy" "readers_policy" {
 
 # Admins Policy
 resource "azurerm_key_vault_access_policy" "admin_policy" {
-  
+  depends_on = [
+    azurerm_key_vault.keyvault
+  ]
   object_id = data.azuread_client_config.current.object_id
   tenant_id = local.tenant_id
   key_vault_id = azurerm_key_vault.keyvault.id

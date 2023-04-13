@@ -2,7 +2,9 @@
 # Key Vault configuration - Default (required). 
 #------------------------------------------------------------
 resource "azurerm_key_vault" "keyvault" {
-  
+  depends_on = [
+    azuread_service_principal.sp
+  ]
   # Globals
   name = local.kv_name
   location = local.location
