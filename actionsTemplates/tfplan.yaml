@@ -24,7 +24,7 @@ jobs:
             -   name: Terraform plan
                 uses: azurenoops/terraform-github-actions/terraform-plan@v1.34.2
                 with:
-                    path: src
+                    path: src/[WORKSPACE_FOLDER] #CHANGE WORKSPACE FOLDER NAME
                     backend_config: |
                         resource_group_name=${{ secrets.AZURE_RG }}
                         storage_account_name=${{ secrets.AZURE_SA }}

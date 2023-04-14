@@ -14,6 +14,21 @@ Service Principal Name
 Storage Account
 Storage Container
 
+## Usage
+
+Clone this repo to your desired directory
+
+```
+git clone https://github.com/CurtisSlone/terraform-module-overlays-remote-state-accelerator
+cd terraform-module-overlays-remote-state-accelerator
+```
+
+Log-In using AZ cli and set your desired subscription
+```
+az login
+az account list
+az account set --subscription "SUBSCRIPTION NAME"
+```
 
 
 ### Prerequisites
