@@ -4,7 +4,7 @@ Automates remote state generation for faster development, testing, and deploymen
 
 ## Purpose
 
-Creates a remote-state resource group within a single subscription that manages multiple Terraform workspaces. This accelerator uses a combination of git tags and GitHub actions to automate the selection of the statefile.
+Creates a remote-state resource group within a single subscription that manages multiple Terraform workspaces. This accelerator uses a GitHub actions to automate the selection of the statefile.
 
 ### Resources Created
 Resource Group
@@ -92,32 +92,10 @@ git remote add origin git@github.com:<GH Username/Repository>
 git push -u origin main
 ```
 
-Each workspace sub-directory will require it's own tfstate key. Additionally, it will require it's own tag and actionfile.
+#### HIGHLIGHTS
 
-First, add the relevant workspace tags via the git cli. Then push them to your remote branch
+Add switches to case in action files. Identify workload 'short-codes'.
 
-```
-git tag <Workspace1_Tag>
-git tag <Workspace2_Tag>
-git push origin --tags
-```
+TFPlan uses pulls. The name of the pull-request must contain the workload short-code.
 
-Now, copy the terraform action templates from the actionTemplates directory and past them in the .github/workslows directory. You will need a separate copy of each for each workspace. Name them apppropriately. See the figure below to view example file structure.
-
-![SRC_DIR](./assets/actions_files.png)
-
-First, update the tag that is designated for it's relevant workspace. Update the path to include the relevant workspace. Identify the name of the terraform key files. Update the secret name in the appropriate github action file. See the figures below. See figures below.
-
-![TAG_ACTION](./assets/rg1_action_tag_update.png)
-
-![PATH_ACTION](./assets/rg1_action_path_update.png)
-
-![KEYNAME_ACTION](./assets/rg1_action_secret.png)
-
-Repeat these steps for the workspace terraform actions.
-
-Then create the keyfile secret in GitHub.
-
-![KEYNAME_SECRET](./assets/rg1_secret_keyfile.png)
-
-
+TF Apply uses pushes. The commit must contain the workload short-code.

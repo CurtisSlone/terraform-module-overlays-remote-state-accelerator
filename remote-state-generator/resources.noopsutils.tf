@@ -12,16 +12,6 @@ resource "azurenoopsutils_resource_name" "rg" {
     separator     = "-"
 }
 
-# KeyVault NoOpsUtils
-resource "azurenoopsutils_resource_name" "kv" {
-    name = "statekv"
-    resource_type = "azurerm_key_vault"
-     prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
-    suffixes        = []
-    random_length = 5
-    clean_input = true
-}
-
 # Storage Account NoOpsUtils
 resource "azurenoopsutils_resource_name" "sa" {
     name = "statesa"

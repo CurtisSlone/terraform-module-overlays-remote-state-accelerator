@@ -1,6 +1,6 @@
 # Generate a random storage name
 resource "random_string" "rand" {
-  length = 8
+  length = 5
   upper = true
   numeric = false
   lower = true
