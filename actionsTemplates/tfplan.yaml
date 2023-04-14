@@ -8,6 +8,8 @@ env:
     ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 on:
     - pull_request
+    tags:
+        - '[TAG_NAME]' # CHANGE TAG TO MATCH DESIRED WORKSPACE TAG
 permissions:
     contents: read
     pull-requests: write

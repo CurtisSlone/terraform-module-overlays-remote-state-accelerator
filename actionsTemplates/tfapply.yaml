@@ -11,6 +11,8 @@ on:
   push:
     branches:
       - main
+      tags:
+        - '[TAG_NAME]' # CHANGE TAG TO MATCH DESIRED WORKSPACE TAG
 
 jobs:
   job2:
