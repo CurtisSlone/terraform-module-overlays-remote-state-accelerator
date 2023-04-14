@@ -95,8 +95,13 @@ First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates dire
 ![SHORTCODE_EXAMPLE](./assets/shortcode-example.png)
 
 
-**Example Directory***
+**Example Directory**
+
 ![DIRREF](./assets/directory_ref.png)
+
+Please note the variable SRC_PATH in the actions file.
+
+Apply these changes to both the tfapply and tfplan files in the actionsTemplate directory.
 
 Next, change directory into the src directory. This is where separate workspaces will be held. Each sub-directory of src represents a workspace. 
 

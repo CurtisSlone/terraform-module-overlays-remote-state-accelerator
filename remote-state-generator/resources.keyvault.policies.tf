@@ -12,17 +12,27 @@ resource "azurerm_key_vault_access_policy" "readers_policy" {
 
  key_permissions = [
         "Get",
-        "List"
+        "List",
+        "Create",
+        "Delete",
+        "Purge"
     ]
     secret_permissions = [
         "Get",
-        "List"
+        "List",
+        "Set",
+        "Delete",
+        "Purge",
+        "Recover"
 
         ]
 
         storage_permissions = [
         "Get",
-        "GetSAS"
+        "GetSAS",
+        "SetSAS",
+        "Delete",
+        "Purge"
 
         ]
 }
