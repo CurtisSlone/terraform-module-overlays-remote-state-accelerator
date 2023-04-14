@@ -1,4 +1,4 @@
-name: TF plan and apply
+name: TF Apply
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
