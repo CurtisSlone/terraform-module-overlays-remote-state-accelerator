@@ -24,9 +24,11 @@ You must create a new github repository to host your terraform code. Create the 
 **DO NOT** Initialize a local branch.
 **DO NOT** Stage any commits.
 
-Leave the repository in the default new state
+Leave the repository in the default new state. Like Below
 
 ![New-Repo](./assets/new-repo.png)
+
+### Steps:
 
 Clone this repo to your desired local directory
 
@@ -49,7 +51,45 @@ terraform init
 terraform plan
 terrafor apply --auto-approve
 ```
+
+Capture the outputs from your command line and insert them as secrets into your GitHub Secrets. Reference any actions file in the **actionTemplates** directory for naming convention of secrets. See figure below:
+
+![GH_SECRETS_1](./assets/GH_Secrets1.png)
+![GH_SECRETS_2](./assets/GH_Secrets2.png)
+
+The outputs should be generated automatically. See figure below.
+![GH_OUTPUTS](./assets/outputs_1.png)
+
 ### Obtaining Client Secret
 ```
-terraform output -json client_secret
+terraform output -raw client_secret
 ```
+
+See Below
+![GH_OUTPUTS_2](./assets/outputs_2.png)
+
+**Note:**  You may have a % attached at the end if you are on Mac or Linux. Do not copy this into the AZURE_AD_CLIENT_SECRET secret in GitHub.
+
+After inputting all outputs into GitHub Secrets, create Github secrets for your tenant ID and Subscription ID. If you do not know them you can discover them using the following command.
+
+```
+az account show
+```
+
+Next, change directory into the src directory. This is where separate workspaces will be held. Each sub-directory of src represents a workspace. 
+
+Within the src directory, you can run the git commands to initialize your diectory, create a local branch, connect your remote branch, and the push the contents of the src directory to the GitHub repository that your created.
+
+Run the following commands:
+
+```
+cd src
+git init
+git add .
+git commit -m "Initial Commit"
+git branch -M main
+git remote add origin git@github.com:<GH Username/Repository>
+git push -u origin main
+```
+
+Each workspace sub-directory will require it's own tfstate key. Additionally, it will require it's own tag and actionfile.
