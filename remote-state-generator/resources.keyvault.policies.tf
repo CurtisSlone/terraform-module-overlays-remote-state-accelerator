@@ -10,20 +10,21 @@ resource "azurerm_key_vault_access_policy" "readers_policy" {
   tenant_id = local.tenant_id
   key_vault_id = azurerm_key_vault.keyvault.id
 
-  key_permissions = [
-    "Get",
-    "List",
-  ]
+ key_permissions = [
+        "Get",
+        "List"
+    ]
+    secret_permissions = [
+        "Get",
+        "List"
 
-  secret_permissions = [
-    "Get",
-    "List",
-  ]
+        ]
 
-  certificate_permissions = [
-    "Get",
-    "List",
-  ]
+        storage_permissions = [
+        "Get",
+        "GetSAS"
+
+        ]
 }
 
 # Admins Policy
@@ -37,51 +38,28 @@ resource "azurerm_key_vault_access_policy" "admin_policy" {
 
   
   key_permissions = [
-    "Backup",
-    "Create",
-    "Decrypt",
-    "Delete",
-    "Encrypt",
-    "Get",
-    "Import",
-    "List",
-    "Purge",
-    "Recover",
-    "Restore",
-    "Sign",
-    "UnwrapKey",
-    "Update",
-    "Verify",
-    "WrapKey",
-  ]
+        "Get",
+        "List",
+        "Create",
+        "Delete",
+        "Purge"
+    ]
+    secret_permissions = [
+        "Get",
+        "List",
+        "Set",
+        "Delete",
+        "Purge",
+        "Recover"
 
-  secret_permissions = [
-    "Backup",
-    "Delete",
-    "Get",
-    "List",
-    "Purge",
-    "Recover",
-    "Restore",
-    "Set",
-  ]
+        ]
 
-  certificate_permissions = [
-    "Backup",
-    "Create",
-    "Delete",
-    "DeleteIssuers",
-    "Get",
-    "GetIssuers",
-    "Import",
-    "List",
-    "ListIssuers",
-    "ManageContacts",
-    "ManageIssuers",
-    "Purge",
-    "Recover",
-    "Restore",
-    "SetIssuers",
-    "Update",
-  ]
+        storage_permissions = [
+        "Get",
+        "GetSAS",
+        "SetSAS",
+        "Delete",
+        "Purge"
+
+        ]
 }
