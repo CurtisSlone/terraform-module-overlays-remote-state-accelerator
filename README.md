@@ -106,6 +106,18 @@ Now, copy the terraform action templates from the actionTemplates directory and 
 
 ![SRC_DIR](./assets/actions_files.png)
 
-First, update the tag that is designated for it's relevant workspace. Identify the name of the terraform key files. Update the secret name in the appropriate github action file. Then create the secret in GitHub. See the figures below. See figures below.
+First, update the tag that is designated for it's relevant workspace. Update the path to include the relevant workspace. Identify the name of the terraform key files. Update the secret name in the appropriate github action file. See the figures below. See figures below.
+
+![TAG_ACTION](./assets/rg1_action_tag_update.png)
+
+![PATH_ACTION](./assets/rg1_action_path_update.png)
+
+![KEYNAME_ACTION](./assets/rg1_action_secret.png)
+
+Repeat these steps for the workspace terraform actions.
+
+Then create the keyfile secret in GitHub.
+
+![KEYNAME_SECRET](./assets/rg1_secret_keyfile.png)
 
 
