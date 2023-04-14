@@ -52,10 +52,10 @@ terraform plan
 terrafor apply --auto-approve
 ```
 
-Capture the outputs from your command line and insert them as secrets into your GitHub Secrets. Reference any actions file in the **actionTemplates** directory for naming convention of secrets. See figure below:
+Capture the outputs from your command line and insert them as secrets into your GitHub Secrets. Reference the action files 'tfapply' or 'tfplan' in the **actionTemplates** directory for naming convention of secrets. See figure below:
 
-![GH_SECRETS_1](./assets/GH_Secrets1.png)
-![GH_SECRETS_2](./assets/GH_Secrets2.png)
+![GH_SECRETS_1](./assets/GH_Secrets_1.png)
+![GH_SECRETS_2](./assets/GH_Secrets_2.png)
 
 The outputs should be generated automatically. See figure below.
 ![GH_OUTPUTS](./assets/outputs_1.png)
@@ -91,9 +91,11 @@ git branch -M main
 git remote add origin git@github.com:<GH Username/Repository>
 git push -u origin main
 ```
+
+
 The GitHub Action files must be updated using identified workload 'short-codes'. These work as workload identifiers that are required to be in the pull-request title, and the commit.
 
-First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates directory.
+First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates directory. Adjust 
 #### HIGHLIGHTS
 
 Add switches to case in action files. Identify workload 'short-codes'.
