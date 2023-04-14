@@ -14,9 +14,21 @@ Service Principal Name
 Storage Account
 Storage Container
 
+
 ## Usage
 
-Clone this repo to your desired directory
+### Prequisites:
+
+You must create a new github repository to host your terraform code. Create the repository on GitHub.
+
+**DO NOT** Initialize a local branch.
+**DO NOT** Stage any commits.
+
+Leave the repository in the default new state
+
+![New-Repo](./assets/new-repo.png)
+
+Clone this repo to your desired local directory
 
 ```
 git clone https://github.com/CurtisSlone/terraform-module-overlays-remote-state-accelerator
@@ -30,19 +42,13 @@ az account list
 az account set --subscription "SUBSCRIPTION NAME"
 ```
 
-
-### Prerequisites
-
-Use az cli to login to the subscription that your remote state backend will be hosted.
+Now you must initialize, plan and apply the semote state backend. In your current directory, execute the following commands.
 
 ```
-az login
-az account set --subscription <subscription-ID>
+terraform init
+terraform plan
+terrafor apply --auto-approve
 ```
-
-### Creation Flow
-
-
 ### Obtaining Client Secret
 ```
 terraform output -json client_secret
