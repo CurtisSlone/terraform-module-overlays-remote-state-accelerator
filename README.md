@@ -105,3 +105,7 @@ git push origin --tags
 Now, copy the terraform action templates from the actionTemplates directory and past them in the .github/workslows directory. You will need a separate copy of each for each workspace. Name them apppropriately. See the figure below to view example file structure.
 
 ![SRC_DIR](./assets/actions_files.png)
+
+First, update the tag that is designated for it's relevant workspace. Identify the name of the terraform key files. Update the secret name in the appropriate github action file. Then create the secret in GitHub. See the figures below. See figures below.
+
+
