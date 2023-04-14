@@ -28,7 +28,7 @@ Leave the repository in the default new state. Like Below
 
 ![New-Repo](./assets/new-repo.png)
 
-### Steps:
+### Walkthrough:
 
 Clone this repo to your desired local directory
 
@@ -82,6 +82,18 @@ Using this naming convention allows you create multiple terraform statefiles to 
 
 In this example we have, *rgOne.terraform.tfstate* and *rgTwo.terraform.tfstate*.
 
+### Updating GitHub Action Templates
+
+The GitHub Action files must be updated using identified workload 'short-codes'. These work as workload identifiers that are required to be in the pull-request title, and the commit.
+
+First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates directory. See figure below for example
+
+![SHORT_CODES](./assets/workload-shortcodes.png)
+
+**Example**
+
+![SHORTCODE_EXAMPLE](./assets/shortcode-example.png)
+
 Next, change directory into the src directory. This is where separate workspaces will be held. Each sub-directory of src represents a workspace. 
 
 Within the src directory, you can run the git commands to initialize your diectory, create a local branch, connect your remote branch, and the push the contents of the src directory to the GitHub repository that your created.
@@ -98,10 +110,6 @@ git remote add origin git@github.com:<GH Username/Repository>
 git push -u origin main
 ```
 
-
-The GitHub Action files must be updated using identified workload 'short-codes'. These work as workload identifiers that are required to be in the pull-request title, and the commit.
-
-First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates directory. Adjust 
 #### HIGHLIGHTS
 
 Add switches to case in action files. Identify workload 'short-codes'.

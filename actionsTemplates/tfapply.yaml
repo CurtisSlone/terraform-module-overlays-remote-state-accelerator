@@ -22,18 +22,18 @@ jobs:
       - name: Check Commit
         run: |
           case "${{ github.event.head_commit.message}}" in
-            *"rg1"*)
-              echo "Setting TF_KEY and SRC to match rg1 case"
-              echo "TF_KEY=${{ secrets.AZURE_RG1_KEY }}" >> $GITHUB_ENV
+            *"[workload short-code]"*)
+              echo "Setting TF_KEY and SRC to match [workload short-code] case"
+              echo "TF_KEY=${{ secrets.AZURE_[workload short-code]_KEY }}" >> $GITHUB_ENV
               echo "Making PATH"
-              echo "SRC_PATH=rg1" >> $GITHUB_ENV
+              echo "SRC_PATH=[workload short-code]" >> $GITHUB_ENV
               echo "Finished"
               ;;
-            *"rg2"*)
-              echo "Setting TF_KEY and SRC to match rg2 case"
-              echo "TF_KEY=${{ secrets.AZURE_RG2_KEY }}" >> $GITHUB_ENV
+            *"[workload short-code]"*)
+              echo "Setting TF_KEY and SRC to match [workload short-code] case"
+              echo "TF_KEY=${{ secrets.AZURE_[workload short-code]_KEY }}" >> $GITHUB_ENV
               echo "Making PATH"
-              echo "SRC_PATH=rg2" >> $GITHUB_ENV
+              echo "SRC_PATH=[workload short-code]" >> $GITHUB_ENV
               echo "Finished"
               ;;
             *)
