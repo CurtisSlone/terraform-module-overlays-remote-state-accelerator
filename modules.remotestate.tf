@@ -3,23 +3,42 @@ module "mod_remote_state" {
 
     # Globals
     org_name = "anoa"
-    location = "useast"
-    workload_name = ""
-    deploy_environment = ""
+    location = "eastus"
+    workload_name = "remote-state"
+    deploy_environment = "dev"
 
     # SPN
-    service_principal_name = ""
-    alternative_names = ""
-    service_principal_description = ""
-    service_principal_password_end_date = null
-    service_principal_password_rotation_in_years = null
-    service_principal_password_rotation_in_days = null
+    service_principal_name = "test-spn"
+    alternative_names = []
+    service_principal_description = "Updates subscription and TF workspaces"
 
     # KeyVault
     purge_protection_enabled = false
     soft_delete_retention_days = 7
 
 
+}
+
+#Outputs
+output "resource_group_name" {
+  value = module.mod_remote_state.resource_group_name
+}
+
+output "storage_account_name" {
+  value = module.mod_remote_state.storage_account_name
+}
+
+output "container_name" {
+  value = module.mod_remote_state.container_name
+}
+
+output "client_ID" {
+  value = module.mod_remote_state.client_ID
+}
+
+output "client_secret" {
+  value = module.mod_remote_state.client_secret
+  sensitive = true
 }
 
 # Versions
@@ -36,4 +55,8 @@ terraform {
       version = "~> 1.0"
     }
   }
+}
+
+provider "azurerm" {
+  features {}
 }

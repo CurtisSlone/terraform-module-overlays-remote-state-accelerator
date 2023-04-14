@@ -14,7 +14,7 @@ variable "alternative_names" {
 
 variable "service_principal_description" {
   description = "A description of the service principal provided for internal end-users."
-  default     = null
+  default     = "Updates subscription and TF workspaces"
 }
 
 

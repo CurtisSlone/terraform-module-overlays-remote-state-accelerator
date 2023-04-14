@@ -5,8 +5,8 @@
 resource "azurenoopsutils_resource_name" "rg" {
     name = "stategroup"
     resource_type = "azurerm_resource_group"
-    prefixes        = ["a", "b"]
-    suffixes        = ["y", "z"]
+    prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+    suffixes        = []
     random_length = 5
     clean_input = true
     separator     = "-"
@@ -16,8 +16,8 @@ resource "azurenoopsutils_resource_name" "rg" {
 resource "azurenoopsutils_resource_name" "kv" {
     name = "statekv"
     resource_type = "azurerm_key_vault"
-    prefixes        = ["a", "b"]
-    suffixes        = ["y", "z"]
+     prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+    suffixes        = []
     random_length = 5
     clean_input = true
 }
@@ -26,8 +26,8 @@ resource "azurenoopsutils_resource_name" "kv" {
 resource "azurenoopsutils_resource_name" "sa" {
     name = "statesa"
     resource_type = "azurerm_storage_account"
-    prefixes        = ["a", "b"]
-    suffixes        = ["y", "z"]
+     prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+    suffixes        = []
     random_length = 5
     clean_input = true
 }
@@ -36,8 +36,8 @@ resource "azurenoopsutils_resource_name" "sa" {
 resource "azurenoopsutils_resource_name" "sc" {
     name = "statesc"
     resource_type = "azurerm_storage_container"
-    prefixes        = ["a", "b"]
-    suffixes        = ["y", "z"]
+     prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+    suffixes        = []
     random_length = 5
     clean_input = true
 }
