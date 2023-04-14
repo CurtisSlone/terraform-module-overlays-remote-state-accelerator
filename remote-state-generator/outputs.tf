@@ -15,6 +15,6 @@ output "client_ID" {
 }
 
 output "client_secret" {
-  value = azuread_service_principal_password.sp_password.value
+  value = azuread_application_password.app-pass.value
   sensitive = true
 }

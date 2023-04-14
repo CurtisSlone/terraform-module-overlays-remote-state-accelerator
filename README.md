@@ -76,6 +76,12 @@ After inputting all outputs into GitHub Secrets, create Github secrets for your 
 az account show
 ```
 
+Finally, add relevant github secrets for your tfstate file. Make it workload relevant using a naming convention like **workload.terraform.state**.
+
+Using this naming convention allows you create multiple terraform statefiles to switch between using the GitHub Action logic.
+
+In this example we have, *rgOne.terraform.tfstate* and *rgTwo.terraform.tfstate*.
+
 Next, change directory into the src directory. This is where separate workspaces will be held. Each sub-directory of src represents a workspace. 
 
 Within the src directory, you can run the git commands to initialize your diectory, create a local branch, connect your remote branch, and the push the contents of the src directory to the GitHub repository that your created.
