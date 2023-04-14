@@ -93,3 +93,15 @@ git push -u origin main
 ```
 
 Each workspace sub-directory will require it's own tfstate key. Additionally, it will require it's own tag and actionfile.
+
+First, add the relevant workspace tags via the git cli. Then push them to your remote branch
+
+```
+git tag <Workspace1_Tag>
+git tag <Workspace2_Tag>
+git push origin --tags
+```
+
+Now, copy the terraform action templates from the actionTemplates directory and past them in the .github/workslows directory. You will need a separate copy of each for each workspace. Name them apppropriately. See the figure below to view example file structure.
+
+![SRC_DIR](./assets/actions_files.png)
