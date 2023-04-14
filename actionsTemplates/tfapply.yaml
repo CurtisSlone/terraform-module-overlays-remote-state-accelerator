@@ -1,0 +1,31 @@
+name: TF plan and apply
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUB_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job2:
+    runs-on: ubuntu-latest
+    name: Apply Terraform Plan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: terraform apply
+        uses: azurenoops/terraform-github-actions/terraform-apply@v1.34.2
+        with: 
+          path: src
+          backend_config: |
+                        resource_group_name=${{ secrets.AZURE_RG }}
+                        storage_account_name=${{ secrets.AZURE_SA }}
+                        container_name=${{ secrets.AZURE_SC }}
+                        key=${{ secrets.AZURE_*_KEY }}

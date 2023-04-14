@@ -1,0 +1,30 @@
+name: TF Plan
+
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+    ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+    ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUB_ID }}
+    ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+on:
+    - pull_request
+permissions:
+    contents: read
+    pull-requests: write
+
+jobs:
+    plan:
+        runs-on: ubuntu-latest
+        name: Create terraform plan
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+            -   name: Terraform plan
+                uses: azurenoops/terraform-github-actions/terraform-plan@v1.34.2
+                with:
+                    path: src
+                    backend_config: |
+                        resource_group_name=${{ secrets.AZURE_RG }}
+                        storage_account_name=${{ secrets.AZURE_SA }}
+                        container_name=${{ secrets.AZURE_SC }}
+                        key=${{ secrets.AZURE_*_KEY }}

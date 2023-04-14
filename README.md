@@ -6,7 +6,6 @@ Automates remote state generation for faster development, testing, and deploymen
 
 Creates a remote-state resource group within a single subscription that manages multiple Terraform workspaces. This accelerator uses a combination of git tags and GitHub actions to automate the selection of the statefile.
 
-
 ### Resources Created
 Resource Group
 KeyVault

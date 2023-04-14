@@ -1,0 +1,26 @@
+name: Cleanup
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+    ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+    ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUB_ID }}
+    ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+on:
+  workflow_dispatch:
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    name: Destroy terraform workspace
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: terraform destroy
+        uses: azurenoops/terraform-github-actions/terraform-destroy@v1.34.2
+        with:
+          path: src
+          workspace: ${{ github.head_ref}}
+          backend_config: |
+                        resource_group_name=${{ secrets.AZURE_RG }}
+                        storage_account_name=${{ secrets.AZURE_SA }}
+                        container_name=${{ secrets.AZURE_SC }}
+                        key=${{ secrets.AZURE_*_KEY }}
