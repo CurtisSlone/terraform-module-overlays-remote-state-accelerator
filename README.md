@@ -94,6 +94,10 @@ First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates dire
 
 ![SHORTCODE_EXAMPLE](./assets/shortcode-example.png)
 
+
+**Example Directory***
+![DIRREF](./assets/directory_ref.png)
+
 Next, change directory into the src directory. This is where separate workspaces will be held. Each sub-directory of src represents a workspace. 
 
 Within the src directory, you can run the git commands to initialize your diectory, create a local branch, connect your remote branch, and the push the contents of the src directory to the GitHub repository that your created.
