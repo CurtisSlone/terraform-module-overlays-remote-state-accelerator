@@ -4,19 +4,7 @@ Automates remote state generation for faster development, testing, and deploymen
 
 ## Purpose
 
-Creates a network artifacts group that store multiple terraform state files for a single subscription.
-The intent is that it will be combined with GitHub actions. Tags will trigger which workspace will be used.
-
-#### Key Features
-Creates two security groups: KV-Admins & KV-Readers
-Creates an SPN for management over the current subscription
-Adds current user to KV-Admins,
-Adds SPN to KV-Readers
-Creates a Keyvault for the SAS
-Creates Storage Account and Storage Container
-Takes an array of strings with the terraform key file names to segregate work spaces.
-
-
+Creates a remote-state resource group within a single subscription that manages multiple Terraform workspaces. This accelerator uses a combination of git tags and GitHub actions to automate the selection of the statefile.
 
 
 ### Resources Created
