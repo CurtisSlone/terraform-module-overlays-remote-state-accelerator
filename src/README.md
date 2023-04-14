@@ -1,8 +1,9 @@
-# TEST TF WORKSPACES
+# TEST TF WORKSPACES Code
+Using github actions to select workspaces using env
+### Current Workspaces
 
-### Current Workspaces & Tag
+rg1 - simple resource group
 
-rg1 <-- tag: rg1
+rg2 - simple resource group
 
-rg2 <-- tag: rg2
 
