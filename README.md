@@ -91,7 +91,9 @@ git branch -M main
 git remote add origin git@github.com:<GH Username/Repository>
 git push -u origin main
 ```
+The GitHub Action files must be updated using identified workload 'short-codes'. These work as workload identifiers that are required to be in the pull-request title, and the commit.
 
+First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates directory.
 #### HIGHLIGHTS
 
 Add switches to case in action files. Identify workload 'short-codes'.

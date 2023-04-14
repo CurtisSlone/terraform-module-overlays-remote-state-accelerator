@@ -14,8 +14,8 @@ resource "azurerm_key_vault" "keyvault" {
 
   # Keyvault Configurations - Hard Coded
   enabled_for_disk_encryption = false
-  enable_rbac_authorization = true
-  public_network_access_enabled = false
+  enable_rbac_authorization = false
+  public_network_access_enabled = true
 
   # Keyvault Configurations - Vars
   purge_protection_enabled = var.purge_protection_enabled
