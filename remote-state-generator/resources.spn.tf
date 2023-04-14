@@ -10,6 +10,11 @@ resource "azuread_application" "app" {
   sign_in_audience = "AzureADMyOrg"
 }
 
+# App Registration Password
+resource "azuread_application_password" "app-pass" {
+  application_object_id = azuread_application.app.object_id
+}
+
 # SPN Assignment To App Registration
 resource "azuread_service_principal" "sp" {
   depends_on = [
@@ -29,9 +34,4 @@ resource "azurerm_role_assignment" "role" {
   scope = local.subscription_id
   role_definition_name = "Contributor"
   principal_id         = azuread_service_principal.sp.object_id
-}
-
-# SPN Password 
-resource "azuread_service_principal_password" "sp_password" {
-  service_principal_id = azuread_service_principal.sp.object_id
 }

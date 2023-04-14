@@ -6,7 +6,7 @@ resource "azurerm_key_vault_access_policy" "readers_policy" {
   depends_on = [
     azurerm_key_vault.keyvault
   ]
-  object_id = azuread_service_principal.sp.object_id
+  object_id = azuread_application.app.object_id
   tenant_id = local.tenant_id
   key_vault_id = azurerm_key_vault.keyvault.id
 
