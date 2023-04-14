@@ -4,10 +4,10 @@
 
 resource "azurerm_storage_account" "tfstatesa" {
   depends_on = [
-    module.mod_network_artifacts_rg
+    azurerm_resource_group.staterg
   ]
-  name                     = "${lower(var.org_name)}tfstatesa${random_string.tf-name.result}"
-  resource_group_name      = module.mod_rg.resource_group_name
+  name                     = local.sa_name
+  resource_group_name      = local.rg_name
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
@@ -23,7 +23,7 @@ resource "azurerm_storage_container" "tfstatesc" {
   depends_on = [
     azurerm_storage_account.tfstatesa
   ]
-  name                  = "${lower(var.org_name)}tfstatesc${random_string.tf-name.result}"
+  name                  = local.sc_name
   storage_account_name  = azurerm_storage_account.tfstatesa.name
   container_access_type = "private"
 }

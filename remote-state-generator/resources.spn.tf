@@ -4,7 +4,7 @@
 # App Registration
 resource "azuread_application" "app" {
   depends_on = [
-    module.mod_rg
+    azurerm_resource_group.staterg
   ]
   display_name     = var.service_principal_name
   sign_in_audience = "AzureADMyOrg"
@@ -27,7 +27,7 @@ resource "azurerm_role_assignment" "role" {
   ]
   name                 = "SubscriptionContributor"
   description          = "Current Subscription Contributor Role"
-  scope = "subscriptions/${data.azurerm_client_config.current.subscription_id}"
+  scope = local.subscription_id
   role_definition_name = "Contributor"
   principal_id         = azuread_service_principal.sp.object_id
 }

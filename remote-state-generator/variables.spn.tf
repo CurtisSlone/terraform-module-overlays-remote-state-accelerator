@@ -17,10 +17,6 @@ variable "service_principal_description" {
   default     = null
 }
 
-variable "role_definition_name" {
-  description = "The name of a Azure built-in Role for the service principal"
-  default     = null
-}
 
 variable "service_principal_password_end_date" {
   description = "The relative duration or RFC3339 rotation timestamp after which the password expire"

@@ -8,9 +8,9 @@ resource "azurerm_key_vault" "keyvault" {
   # Globals
   name = local.kv_name
   location = local.location
-  resource_group_name = module.mod_rg.resource_group_name
+  resource_group_name = local.rg_name
   tenant_id = local.tenant_id
-  sku_name = var.sku_name
+  sku_name = "Standard"
 
   # Keyvault Configurations - Hard Coded
   enabled_for_disk_encryption = false
