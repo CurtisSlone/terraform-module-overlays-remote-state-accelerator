@@ -15,5 +15,27 @@ module "mod_rg1" {
     lock_level = var.lock_level
 
     //Tags
-    add_tags = var.tags 
+    add_tags = {}
+}
+
+# Versions
+
+terraform {
+  required_version = ">= 1.3"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.22"
+    }
+    azurenoopsutils = {
+      source  = "azurenoops/azurenoopsutils"
+      version = "~> 1.0"
+    }
+  }
+
+  backend "azurerm" { }
+}
+
+provider "azurerm" {
+  features {}
 }

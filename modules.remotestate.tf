@@ -8,7 +8,7 @@ module "mod_remote_state" {
     deploy_environment = "dev"
 
     # SPN
-    service_principal_name = "test-spn"
+    service_principal_name = "subscription-spn"
     alternative_names = []
     service_principal_description = "Updates subscription and TF workspaces"
 
