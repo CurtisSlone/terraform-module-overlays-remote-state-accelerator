@@ -9,11 +9,6 @@ resource "azuread_application" "app" {
   display_name     = var.service_principal_name
 }
 
-# App Registration Password
-resource "azuread_application_password" "app-pass" {
-  application_object_id = azuread_application.app.object_id
-}
-
 # SPN Assignment To App Registration
 resource "azuread_service_principal" "sp" {
   depends_on = [
@@ -23,6 +18,11 @@ resource "azuread_service_principal" "sp" {
   application_id    = azuread_application.app.application_id
   alternative_names = var.alternative_names
   description       = var.service_principal_description
+}
+
+# SPN password
+resource "azuread_service_principal_password" "pass" {
+  service_principal_id = azuread_service_principal.sp.object_id
 }
 
 # SPN Roles

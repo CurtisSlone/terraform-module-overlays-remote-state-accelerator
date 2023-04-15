@@ -11,10 +11,10 @@ output "container_name" {
 }
 
 output "client_ID" {
-  value = azuread_service_principal.sp.id
+  value = azuread_application.app.application_id
 }
 
 output "client_secret" {
-  value = azuread_application_password.app-pass.value
+  value = azuread_service_principal_password.pass.value
   sensitive = true
 }
