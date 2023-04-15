@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "staterg" {
   name = "rg-1"
-  location = "eastud"
+  location = "eastus"
   tags = {}
 }
 
