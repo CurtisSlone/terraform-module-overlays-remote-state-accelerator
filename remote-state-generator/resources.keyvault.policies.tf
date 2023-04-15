@@ -4,7 +4,8 @@
 # Readers Policy
 resource "azurerm_key_vault_access_policy" "readers_policy" {
   depends_on = [
-    azurerm_key_vault.keyvault
+    azurerm_key_vault.keyvault,
+    azuread_application.app
   ]
   object_id = azuread_application.app.object_id
   tenant_id = local.tenant_id
@@ -12,64 +13,16 @@ resource "azurerm_key_vault_access_policy" "readers_policy" {
 
  key_permissions = [
         "Get",
-        "List",
-        "Create",
-        "Delete",
-        "Purge"
+        "List"
     ]
     secret_permissions = [
         "Get",
-        "List",
-        "Set",
-        "Delete",
-        "Purge",
-        "Recover"
-
+        "List"
         ]
 
-        storage_permissions = [
-        "Get",
-        "GetSAS",
-        "SetSAS",
-        "Delete",
-        "Purge"
-
-        ]
-}
-
-# Admins Policy
-resource "azurerm_key_vault_access_policy" "admin_policy" {
-  depends_on = [
-    azurerm_key_vault.keyvault
-  ]
-  object_id = data.azuread_client_config.current.object_id
-  tenant_id = local.tenant_id
-  key_vault_id = azurerm_key_vault.keyvault.id
-
-  
-  key_permissions = [
-        "Get",
-        "List",
-        "Create",
-        "Delete",
-        "Purge"
+    storage_permissions = [
+    "Get",
+    "GetSAS"
     ]
-    secret_permissions = [
-        "Get",
-        "List",
-        "Set",
-        "Delete",
-        "Purge",
-        "Recover"
-
-        ]
-
-        storage_permissions = [
-        "Get",
-        "GetSAS",
-        "SetSAS",
-        "Delete",
-        "Purge"
-
-        ]
 }
+

@@ -2,9 +2,7 @@
 # Key Vault configuration - Default (required). 
 #------------------------------------------------------------
 resource "azurerm_key_vault" "keyvault" {
-  depends_on = [
-    azuread_service_principal.sp
-  ]
+  
   # Globals
   name = local.kv_name
   location = local.location
@@ -20,4 +18,36 @@ resource "azurerm_key_vault" "keyvault" {
   # Keyvault Configurations - Vars
   purge_protection_enabled = var.purge_protection_enabled
   soft_delete_retention_days = var.soft_delete_retention_days
+
+  access_policy {
+    
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
+    
+    key_permissions = [
+        "Get",
+        "List",
+        "Create",
+        "Delete",
+        "Purge"
+    ]
+    secret_permissions = [
+        "Get",
+        "List",
+        "Set",
+        "Delete",
+        "Purge",
+        "Recover"
+
+        ]
+
+        storage_permissions = [
+        "Get",
+        "GetSAS",
+        "SetSAS",
+        "Delete",
+        "Purge"
+
+        ]
+  }
 }
