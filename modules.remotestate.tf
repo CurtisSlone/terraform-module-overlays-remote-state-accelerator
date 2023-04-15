@@ -1,5 +1,15 @@
+# Azure Resource Manager Data Source
+data "azurerm_client_config" "current" {
+}
+
+# Azure AD Data Source
+data "azuread_client_config" "current" {
+}
+
+
 module "mod_remote_state" {
   source = "./remote-state-generator"
+
 
     # Globals
     org_name = "anoa"

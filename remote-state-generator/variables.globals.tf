@@ -26,4 +26,3 @@ variable "deploy_environment" {
   type        = string
 }
 
-
