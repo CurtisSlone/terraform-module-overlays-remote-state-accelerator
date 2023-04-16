@@ -29,26 +29,26 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 ### Inputs
 
-| Input                                             | Value Type                                |
+| **Input**                                             | **Value Type**                                |
 |:------------------------------------------------  | ----------------------------------------: |
-| Global Inputs                                     |                                           |
+| **Global Inputs**                                     |                                           |
 |:------------------------------------------------  | ----------------------------------------: |
 | org_name                                          | string                                    |
 | location                                          | string                                    | 
 | workload_name                                     | string                                    |
 |:------------------------------------------------  | ----------------------------------------: |
-| SPN Inputs                                        |                                           |
+| **SPN Inputs**                                        |                                           |
 |:------------------------------------------------  | ----------------------------------------: |
 | service_principal_name                            | string                                    |
 | alternative_names                                 | list(string)                              |
 | service_principal_description                     | string                                    |
 |:------------------------------------------------  | ----------------------------------------: |
-| KeyVault Inputs                                   |                                           |
+| **KeyVault Inputs**                                   |                                           |
 |:------------------------------------------------  | ----------------------------------------: |
 | purge_protection_enabled                          | bool                                      |
 | soft_delete_retention_days                        | integer                                   |
 |:------------------------------------------------  | ----------------------------------------: |
-| Resource Lock Inputs                              |                                           |
+| **Resource Lock Inputs**                              |                                           |
 |:------------------------------------------------  | ----------------------------------------: |
 | enable_resource_locks                             | bool                                      |
 | lock_level                                        | string                                    |
