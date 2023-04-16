@@ -25,7 +25,7 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 * [Storage Container](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container)
 
 
-## Usage
+## Module Usage
 
 ### INPUTS
 
@@ -57,7 +57,7 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 ### Example:
 
-See ![modules.remotestate.tf](https://github.com/CurtisSlone/terraform-module-overlays-remote-state-accelerator/blob/main/modules.remotestate.tf)
+See [modules.remotestate.tf](https://github.com/CurtisSlone/terraform-module-overlays-remote-state-accelerator/blob/main/modules.remotestate.tf)
 
 ```terraform
 
@@ -130,15 +130,14 @@ provider "azurerm" {
 }
 ```
 
+## GitHub Actions Usage
 
-You must create a new github repository to host your terraform code. Create the repository on GitHub.
+The GitHub Actions in the actionsTemplates directory are vital pieces to the accelerator. The actions us workload short-codes to identify workspaces in logic. Each tfstate file requires its own key which will be chosen in this logic.
 
-**DO NOT** Initialize a local branch.
-**DO NOT** Stage any commits.
+Each workspace must be segregated in it's own folder within your working directory. The .github/workflows will be at the top level directory. See the figure below as an example.
 
-Leave the repository in the default new state. Like Below
+![WORKSPACE_REF](./assets/workspace_dir.png)
 
-![New-Repo](./assets/new-repo.png)
 
 ### Walkthrough:
 
