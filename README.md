@@ -238,4 +238,5 @@ Below is a listing of GitHub Secrets that are not found in the module outputs.
 |:------------------------------------------------  | ----------------------------------------: |
 | AZURE_SUB_ID                                       | Identified subscription ID      |
 | AZURE_AD_TENANT_ID                                 | Tenant ID                       | 
-| AAZURE_*_KEY                                       | *.terraform.tfstate             |
+| AZURE_*_KEY                                       | *.terraform.tfstate             |
+
