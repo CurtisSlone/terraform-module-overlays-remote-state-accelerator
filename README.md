@@ -145,6 +145,7 @@ In the 'tfplan' and 'tfapply' actions, there is embedded logic that must be adju
 A workspace short-code is a short subtring in which to identify your workspace. See the table below for an example.
 
 | **Workspace**                            | **Short-Code**                                  |
+|:------------------------------------------------  | ----------------------------------------: |
 | workspace1                                         | ws1                                  |
 | workspace2                                         | ws2                                   | 
 
