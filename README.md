@@ -170,7 +170,7 @@ This file uses a push based action. The chosen short-code must be in the most re
 -   name: Check Pull
                 run: |
                     case "${{ github.event.pull_request.title }}" in
-                        *"[ws1"*)
+                        *"ws1"*)
                             echo "Setting TF_KEY and SRC to match ws1 case"
                             echo "TF_KEY=${{ secrets.AZURE_WS1_KEY }}" >> $GITHUB_ENV
                             echo "Making PATH"
@@ -196,7 +196,7 @@ This file uses a push based action. The chosen short-code must be in the most re
 - name: Check Commit
         run: |
           case "${{ github.event.head_commit.message}}" in
-            *"[ws1"*)
+            *"ws1"*)
                 echo "Setting TF_KEY and SRC to match ws1 case"
                 echo "TF_KEY=${{ secrets.AZURE_WS1_KEY }}" >> $GITHUB_ENV
                 echo "Making PATH"
