@@ -15,7 +15,6 @@ module "mod_remote_state" {
     org_name = "anoa"
     location = "eastus"
     workload_name = "remote-state"
-    deploy_environment = "dev"
 
     # SPN
     service_principal_name = "subscription-spn"
@@ -25,6 +24,11 @@ module "mod_remote_state" {
     # KeyVault
     purge_protection_enabled = false
     soft_delete_retention_days = 7
+
+    #Resource Locks
+    enable_resource_locks = false
+    lock_level = "CanNotDelete"
+    
 
 
 }

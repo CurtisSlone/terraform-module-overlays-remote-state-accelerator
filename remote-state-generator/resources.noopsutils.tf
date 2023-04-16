@@ -3,9 +3,9 @@
 
 # Resource Group NoOpsUtils
 resource "azurenoopsutils_resource_name" "rg" {
-    name = "stategroup"
+    name = "resourcegroup"
     resource_type = "azurerm_resource_group"
-    prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+    prefixes        = [var.org_name, local.environment,var.workload_name]
     suffixes        = []
     random_length = 5
     clean_input = true
@@ -14,9 +14,9 @@ resource "azurenoopsutils_resource_name" "rg" {
 
 # Storage Account NoOpsUtils
 resource "azurenoopsutils_resource_name" "sa" {
-    name = "statesa"
+    name = "sa"
     resource_type = "azurerm_storage_account"
-     prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+     prefixes        = [var.org_name, local.environment,var.workload_name]
     suffixes        = []
     random_length = 5
     clean_input = true
@@ -24,9 +24,9 @@ resource "azurenoopsutils_resource_name" "sa" {
 
 # Storage Container NoOpsUtils
 resource "azurenoopsutils_resource_name" "sc" {
-    name = "statesc"
+    name = "sc"
     resource_type = "azurerm_storage_container"
-     prefixes        = [var.org_name, var.deploy_environment,var.workload_name]
+     prefixes        = [var.org_name, local.environment,var.workload_name]
     suffixes        = []
     random_length = 5
     clean_input = true

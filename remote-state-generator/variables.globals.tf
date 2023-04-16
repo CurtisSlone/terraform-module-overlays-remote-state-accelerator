@@ -21,8 +21,3 @@ variable "workload_name" {
   type        = string
 }
 
-variable "deploy_environment" {
-  description = "The environment to deploy. It defaults to dev."
-  type        = string
-}
-

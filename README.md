@@ -13,7 +13,7 @@ If you want to contribute to this repository, feel free to to contribute to our 
 
 More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-request-process) file.
 
-### Resources Used
+## Resources Used
 * [Resource Group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
 * [KeyVault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault)
 * [KeyVault Policies](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy)
@@ -26,6 +26,32 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 
 ## Usage
+
+### Inputs
+
+| Input                                             | Value Type                                |
+|:------------------------------------------------  | ----------------------------------------: |
+| Global Inputs                                     |                                           |
+|:------------------------------------------------  | ----------------------------------------: |
+| org_name                                          | string                                    |
+| location                                          | string                                    | 
+| workload_name                                     | string                                    |
+|:------------------------------------------------  | ----------------------------------------: |
+| SPN Inputs                                        |                                           |
+|:------------------------------------------------  | ----------------------------------------: |
+| service_principal_name                            | string                                    |
+| alternative_names                                 | list(string)                              |
+| service_principal_description                     | string                                    |
+|:------------------------------------------------  | ----------------------------------------: |
+| KeyVault Inputs                                   |                                           |
+|:------------------------------------------------  | ----------------------------------------: |
+| purge_protection_enabled                          | bool                                      |
+| soft_delete_retention_days                        | integer                                   |
+|:------------------------------------------------  | ----------------------------------------: |
+| Resource Lock Inputs                              |                                           |
+|:------------------------------------------------  | ----------------------------------------: |
+| enable_resource_locks                             | bool                                      |
+| lock_level                                        | string                                    |
 
 ### Prequisites:
 

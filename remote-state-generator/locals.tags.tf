@@ -4,7 +4,7 @@
 locals {
   default_tags = {
     deployedBy  = format("AzureNoOpsTF [%s]", terraform.workspace)
-    environment = var.deploy_environment
+    environment = local.environment
     workload    = var.workload_name
   } 
 }
