@@ -138,102 +138,103 @@ Each workspace must be segregated in it's own folder within your working directo
 
 ![WORKSPACE_REF](./assets/workspace_dir.png)
 
+### How the actions work
 
-### Walkthrough:
+In the 'tfplan' and 'tfapply' actions, there is embedded logic that must be adjusted to fit each use case. The files create two GitHub environment variables called 'TF_Key' and 'SRC_PATH'. These variables change based on the workspace you choose using ***workspace short-codes***.
 
-Clone this repo to your desired local directory
+A workspace short-code is a short subtring in which to identify your workspace. See the table below for an example.
 
+| **Workspace**                            | **Short-Code**                                  |
+| workspace1                                         | ws1                                  |
+| workspace2                                         | ws2                                   | 
+
+***NOTE:*** The workspace name matches the directory
+
+### Short-Code Integration
+
+**tfplan.yaml**
+
+This file uses a pull-request based action. The chosen short-code must be in the pull request tile.
+
+**tfapply.yaml**
+
+This file uses a push based action. The chosen short-code must be in the most recent commit message.
+
+### DEMONSTRATION:
+
+**tfplan.yaml**
+
+```yaml
+
+-   name: Check Pull
+                run: |
+                    case "${{ github.event.pull_request.title }}" in
+                        *"[ws1"*)
+                            echo "Setting TF_KEY and SRC to match ws1 case"
+                            echo "TF_KEY=${{ secrets.AZURE_WS1_KEY }}" >> $GITHUB_ENV
+                            echo "Making PATH"
+                            echo "SRC_PATH=workspace1" >> $GITHUB_ENV
+                            echo "Finished"
+                            ;;
+                        *"ws2"*)
+                            echo "Setting TF_KEY and SRC to match ws2 case"
+                            echo "TF_KEY=${{ secrets.AZURE_WS2_KEY }}" >> $GITHUB_ENV
+                            echo "Making PATH"
+                            echo "SRC_PATH=workspace2" >> $GITHUB_ENV
+                            echo "Finished"
+                            ;;
+                        *)
+                            echo "false"
+                            exit 1
+                            ;;
+                    esac
 ```
-git clone https://github.com/CurtisSlone/terraform-module-overlays-remote-state-accelerator
-cd terraform-module-overlays-remote-state-accelerator
-```
+**tfapply.yaml**
 
-Log-In using AZ cli and set your desired subscription
-```
-az login
-az account list
-az account set --subscription "SUBSCRIPTION NAME"
-```
-
-Now you must initialize, plan and apply the semote state backend. In your current directory, execute the following commands.
-
-```
-terraform init
-terraform plan
-terrafor apply --auto-approve
-```
-
-Capture the outputs from your command line and insert them as secrets into your GitHub Secrets. Reference the action files 'tfapply' or 'tfplan' in the **actionTemplates** directory for naming convention of secrets. See figure below:
-
-![GH_SECRETS_1](./assets/GH_Secrets_1.png)
-![GH_SECRETS_2](./assets/GH_Secrets_2.png)
-
-The outputs should be generated automatically. See figure below.
-![GH_OUTPUTS](./assets/outputs_1.png)
-
-### Obtaining Client Secret
-```
-terraform output -raw client_secret
-```
-
-See Below
-![GH_OUTPUTS_2](./assets/outputs_2.png)
-
-**Note:**  You may have a % attached at the end if you are on Mac or Linux. Do not copy this into the AZURE_AD_CLIENT_SECRET secret in GitHub.
-
-After inputting all outputs into GitHub Secrets, create Github secrets for your tenant ID and Subscription ID. If you do not know them you can discover them using the following command.
-
-```
-az account show
-```
-
-Finally, add relevant github secrets for your tfstate file. Make it workload relevant using a naming convention like **workload.terraform.state**.
-
-Using this naming convention allows you create multiple terraform statefiles to switch between using the GitHub Action logic.
-
-In this example we have, *rgOne.terraform.tfstate* and *rgTwo.terraform.tfstate*.
-
-### Updating GitHub Action Templates
-
-The GitHub Action files must be updated using identified workload 'short-codes'. These work as workload identifiers that are required to be in the pull-request title, and the commit.
-
-First, update the yaml files 'tfapply' and 'tfplan' in the actionsTemplates directory. See figure below for example
-
-![SHORT_CODES](./assets/workload-shortcodes.png)
-
-**Example**
-
-![SHORTCODE_EXAMPLE](./assets/shortcode-example.png)
-
-
-**Example Directory**
-
-![DIRREF](./assets/directory_ref.png)
-
-Please note the variable SRC_PATH in the actions file.
-
-Apply these changes to both the tfapply and tfplan files in the actionsTemplate directory.
-
-Next, change directory into the src directory. This is where separate workspaces will be held. Each sub-directory of src represents a workspace. 
-
-Within the src directory, you can run the git commands to initialize your diectory, create a local branch, connect your remote branch, and the push the contents of the src directory to the GitHub repository that your created.
-
-Run the following commands:
-
-```
-cd src
-git init
-git add .
-git commit -m "Initial Commit"
-git branch -M main
-git remote add origin git@github.com:<GH Username/Repository>
-git push -u origin main
+```yaml
+- name: Check Commit
+        run: |
+          case "${{ github.event.head_commit.message}}" in
+            *"[ws1"*)
+                echo "Setting TF_KEY and SRC to match ws1 case"
+                echo "TF_KEY=${{ secrets.AZURE_WS1_KEY }}" >> $GITHUB_ENV
+                echo "Making PATH"
+                echo "SRC_PATH=workspace1" >> $GITHUB_ENV
+                echo "Finished"
+                ;;
+            *"ws2"*)
+                echo "Setting TF_KEY and SRC to match ws2 case"
+                echo "TF_KEY=${{ secrets.AZURE_WS2_KEY }}" >> $GITHUB_ENV
+                echo "Making PATH"
+                echo "SRC_PATH=workspace2" >> $GITHUB_ENV
+                echo "Finished"
+                ;;
+            *)
+                echo "false"
+                exit 1
+                ;;
+          esac
 ```
 
-#### HIGHLIGHTS
+To add workspaces to the project. Simply create the workspace directory in your project, identify the short code, and insert the case into the 'tfplan' and 'tfapply' action templates. Additionally, you must decide what the name of the tfstate file for each workspace. In example, workspace1 will use 'wsOne.terraform.tfstate'. Each tfstate file will be added to the GitHub Secrets Accordingly
 
-Add switches to case in action files. Identify workload 'short-codes'.
+## GitHub Secrets
 
-TFPlan uses pulls. The name of the pull-request must contain the workload short-code.
+Below is a listing of the required secrets and their corresponding values from the terraform outputs.
 
-TF Apply uses pushes. The commit must contain the workload short-code.
+### SECRETS:
+ **GH Secret**                                      | **Output Value*                   |
+|:------------------------------------------------  | ----------------------------------------: |
+| AZURE_RG                                          | resource_group_name       |
+| AZURE_SA                                          | storage_account_name      | 
+| AZURE_SC                                          | container_name            |
+| AZURE_AD_CLIENT_ID                                | client_ID                 |
+| AZURE_AD_CLIENT_SECRET                            | client_secret             |
+
+Below is a listing of GitHub Secrets that are not found in the module outputs. 
+
+ **GH Secret**                                      | **Value*                   |
+|:------------------------------------------------  | ----------------------------------------: |
+| AZURE_SUB_ID                                       | Identified subscription ID      |
+| AZURE_AD_TENANT_ID                                 | Tenant ID                       | 
+| AAZURE_*_KEY                                       | *.terraform.tfstate             |

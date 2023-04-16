@@ -23,18 +23,18 @@ jobs:
             -   name: Check Pull
                 run: |
                     case "${{ github.event.pull_request.title }}" in
-                        *"[workload short-code]"*)
-                            echo "Setting TF_KEY and SRC to match [workload short-code] case"
-                            echo "TF_KEY=${{ secrets.AZURE_[workload short-code]_KEY }}" >> $GITHUB_ENV
+                        *"[workspace short-code]"*)
+                            echo "Setting TF_KEY and SRC to match [workspace short-code] case"
+                            echo "TF_KEY=${{ secrets.AZURE_[workspace short-code]_KEY }}" >> $GITHUB_ENV
                             echo "Making PATH"
-                            echo "SRC_PATH=[workload short-code]" >> $GITHUB_ENV
+                            echo "SRC_PATH=[workspace directory]" >> $GITHUB_ENV
                             echo "Finished"
                             ;;
-                        *"[workload short-code]"*)
-                            echo "Setting TF_KEY and SRC to match [workload short-code] case"
-                            echo "TF_KEY=${{ secrets.AZURE_[workload short-code]_KEY }}" >> $GITHUB_ENV
+                        *"[workspace short-code]"*)
+                            echo "Setting TF_KEY and SRC to match [workspace short-code] case"
+                            echo "TF_KEY=${{ secrets.AZURE_[workspace short-code]_KEY }}" >> $GITHUB_ENV
                             echo "Making PATH"
-                            echo "SRC_PATH=[workload short-code]" >> $GITHUB_ENV
+                            echo "SRC_PATH=[workspace directory]" >> $GITHUB_ENV
                             echo "Finished"
                             ;;
                         *)
