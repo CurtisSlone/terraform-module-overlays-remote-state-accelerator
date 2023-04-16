@@ -1,18 +1,28 @@
-# Terraform Module Overlay Remote State
+# Azure Remote-State Accelerator Terraform Overlay
+[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/azurenoops/overlays-template/azurerm/)
 
-Automates remote state generation for faster development, testing, and deployment times.
+Terraform Module with GitHub Actions templates intended to lower development, testing, and deployment.
 
 ## Purpose
 
-Creates a remote-state resource group within a single subscription that manages multiple Terraform workspaces. This accelerator uses a GitHub actions to automate the selection of the statefile.
+Creates a remote-state resource group within a single subscription that manages multiple Terraform workspaces. This accelerator uses GitHub Actions to automate the selection of the statefile using Bash logic and GitHub Actions.
 
-### Resources Created
-Resource Group
-KeyVault
-App Registration
-Service Principal Name
-Storage Account
-Storage Container
+## Contributing
+
+If you want to contribute to this repository, feel free to to contribute to our Terraform module.
+
+More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-request-process) file.
+
+### Resources Used
+* [Resource Group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
+* [KeyVault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault)
+* [KeyVault Policies](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy)
+* [KeyVault Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret)
+* [App Registration](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application)
+* [Service Principal Name](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal)
+* [Service Principal Name Password](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_password)
+* [Storage Account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account)
+* [Storage Container](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container)
 
 
 ## Usage
