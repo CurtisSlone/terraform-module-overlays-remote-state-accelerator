@@ -27,7 +27,7 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 
 ## Usage
 
-### Inputs
+### INPUTS
 
 | **Input**                                        | **Value Type**                                |
 |:------------------------------------------------  | ----------------------------------------: |
@@ -55,7 +55,81 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 | client_ID                            | azuread_application.app.application_id             |
 | client_secret          | azuread_service_principal_password.pass.value           |
 
-### Prequisites:
+### Example:
+
+See ![modules.remotestate.tf](https://github.com/CurtisSlone/terraform-module-overlays-remote-state-accelerator/blob/main/modules.remotestate.tf)
+
+```terraform
+
+module "mod_remote_state" {
+  source = "./remote-state-generator"
+
+
+    # Globals (Required)
+    org_name = "anoa"
+    location = "eastus"
+    workload_name = "remote-state"
+
+    # SPN ((Required))
+    service_principal_name = "subscription-spn"
+    alternative_names = []
+    service_principal_description = "Updates subscription and TF workspaces"
+
+    # KeyVault (Required)
+    purge_protection_enabled = false
+    soft_delete_retention_days = 7
+
+    #Resource Locks (Not Required)
+    enable_resource_locks = false
+    lock_level = "CanNotDelete"
+    
+
+
+}
+
+#Outputs
+output "resource_group_name" {
+  value = module.mod_remote_state.resource_group_name
+}
+
+output "storage_account_name" {
+  value = module.mod_remote_state.storage_account_name
+}
+
+output "container_name" {
+  value = module.mod_remote_state.container_name
+}
+
+output "client_ID" {
+  value = module.mod_remote_state.client_ID
+}
+
+output "client_secret" {
+  value = module.mod_remote_state.client_secret
+  sensitive = true
+}
+
+# Versions
+
+terraform {
+  required_version = ">= 1.3"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.22"
+    }
+    azurenoopsutils = {
+      source  = "azurenoops/azurenoopsutils"
+      version = "~> 1.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+```
+
 
 You must create a new github repository to host your terraform code. Create the repository on GitHub.
 
