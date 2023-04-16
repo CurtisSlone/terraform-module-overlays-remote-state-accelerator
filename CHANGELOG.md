@@ -1,4 +1,3 @@
-# v1.0.0 - <date>
+# v1.0.0 - 16 APR 2023
 
-Added
-- Add Something you added
+
