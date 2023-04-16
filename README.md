@@ -46,6 +46,15 @@ More details are available in the [CONTRIBUTING.md](./CONTRIBUTING.md#pull-reque
 | enable_resource_locks                             | bool                                      |
 | lock_level                                        | string                                    |
 
+### OUPUTS
+ **OUTPUT**                                        | **Value**                                |
+|:------------------------------------------------  | ----------------------------------------: |
+| resource_group_name         | azurerm_resource_group.staterg.name                  |
+| storage_account_name          | azurerm_storage_account.tfstatesa.name                            | 
+| container_name                | azurerm_storage_container.tfstatesc.name                         |
+| client_ID                            | azuread_application.app.application_id             |
+| client_secret          | azuread_service_principal_password.pass.value           |
+
 ### Prequisites:
 
 You must create a new github repository to host your terraform code. Create the repository on GitHub.
