@@ -7,6 +7,10 @@ env:
     ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 on:
   workflow_dispatch:
+    inputs:
+      TFSTATE:
+        description: 'Desired workspace to run tfdestroy'
+        required: true
 jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
