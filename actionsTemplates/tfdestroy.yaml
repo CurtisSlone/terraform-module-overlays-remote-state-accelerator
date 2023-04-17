@@ -11,6 +11,9 @@ on:
       TFSTATE:
         description: 'Desired workspace to run tfdestroy'
         required: true
+      TF_DIR:
+        description: 'Desired src path'
+        required: true
 jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
@@ -21,8 +24,7 @@ jobs:
       - name: terraform destroy
         uses: azurenoops/terraform-github-actions/terraform-destroy@v1.34.2
         with:
-          path: src
-          workspace: ${{ github.head_ref}}
+          path: ${{github.event.inputs.TF_DIR}}
           backend_config: |
                         resource_group_name=${{ secrets.AZURE_RG }}
                         storage_account_name=${{ secrets.AZURE_SA }}
